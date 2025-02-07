@@ -14,13 +14,16 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# PixelOS OTA update package
+# Ryu-UI OTA update package
 
-CUSTOM_TARGET_PACKAGE := $(PRODUCT_OUT)/$(CUSTOM_VERSION).zip
+RYU_TARGET_PACKAGE := $(PRODUCT_OUT)/$(RYU_VERSION).zip
 MD5 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/md5sum
 
-.PHONY: bacon
-bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CUSTOM_TARGET_PACKAGE)
-	$(hide) $(MD5) $(CUSTOM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CUSTOM_TARGET_PACKAGE).md5sum
-	@echo "Package Complete: $(CUSTOM_TARGET_PACKAGE)" >&2
+.PHONY: ryu
+ryu: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
+
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(RYU_TARGET_PACKAGE)
+	$(hide) $(MD5) $(RYU_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(RYU_TARGET_PACKAGE).md5sum
+	$(hide) ./vendor/ryu/build/tasks/ascii_out.sh
+	@echo "Package Complete: $(RYU_TARGET_PACKAGE)" >&2
+
