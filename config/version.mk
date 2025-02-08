@@ -26,8 +26,8 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.ryu.build.date=$(BUILD_DATE) \
     ro.ryu.device=$(RYU_BUILD) \
     ro.ryu.fingerprint=$(ROM_FINGERPRINT) \
-    ro.ryu.version=$(RYU_PLATFORM_VERSION) \
-    ro.modversion=$(RYU_DISPLAY_VERSION) \
+    ro.ryu.version=$(RYU_DISPLAY_VERSION) \
+    ro.modversion=$(RYU_VERSION) \
     ro.ryu.maintainer=$(RYU_MAINTAINER) \
     ro.ryu.build.type=$(RYU_BUILD_TYPE)
 
