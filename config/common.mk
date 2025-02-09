@@ -113,7 +113,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural;com.google.android.systemui.gxoverlay
 
 # Include font files
-include vendor/ryu/config/fonts.mk
+include vendor/ryu/fonts/fonts.mk
 
 # Google Photos Pixel Exclusive XML
 PRODUCT_COPY_FILES += \
@@ -272,13 +272,6 @@ PRODUCT_PACKAGES += libtensorflowlite_jni
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/lib/libtensorflowlite_jni.so \
     system/lib64/libtensorflowlite_jni.so
-
-# Translations
-CUSTOM_LOCALES += \
-    ast_ES \
-    gd_GB \
-    cy_GB \
-    fur_IT
 
 include vendor/ryu/config/version.mk
 
