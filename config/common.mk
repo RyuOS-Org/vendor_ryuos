@@ -275,7 +275,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 include vendor/ryu/config/version.mk
 
 # RyuUI PIF
-$(call inherit-product-if-exists, vendor/ryu-pif/product.mk)
+-include vendor/ryu-pif/product.mk
 
 # Private keys
 ifeq ($(RYU_BUILD_TYPE),Official)
@@ -285,7 +285,7 @@ else
 endif
 
 # OTA
-$(call inherit-product, vendor/ryu/config/ota.mk)
+include vendor/ryu/config/ota.mk
 
 PRODUCT_COPY_FILES += \
     vendor/ryu/config/permissions/privapp-permissions-ryu.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-ryu.xml
