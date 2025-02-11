@@ -2,7 +2,7 @@ CUSTOM_BUILD_DATE := $(shell date -u +%Y%m%d-%H%M)
 
 RYU_PLATFORM_VERSION := 15.0
 RYU_DISPLAY_VERSION := Ryujin
-RYU_BUILD_TYPE ?= Unofficial
+RYU_BUILD_TYPE ?= Community
 RYU_MAINTAINER ?= Wakaranai?
 
 OFFICIAL_MAINTAINER = $(shell cat vendor/ryu/maintainer/official_maintainer.mk | awk '{ print $$1 }')
@@ -19,7 +19,7 @@ else
         $(warning "No maintainer name detected, building as unofficial build.")
 endif
 
-RYU_VERSION := RyuUI-$(RYU_DISPLAY_VERSION)-$(RYU_BUILD)-$(RYU_BUILD_TYPE)-$(RYU_PLATFORM_VERSION)-$(CUSTOM_BUILD_DATE)
+RYU_VERSION := RyuUI-$(RYU_DISPLAY_VERSION)-$(RYU_PLATFORM_VERSION)-$(RYU_BUILD)-$(RYU_BUILD_TYPE)-$(CUSTOM_BUILD_DATE)
 
 # Ryu-UI Platform Version
 PRODUCT_SYSTEM_PROPERTIES += \
