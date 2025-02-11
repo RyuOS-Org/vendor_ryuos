@@ -295,4 +295,7 @@ endif
 # OTA
 $(call inherit-product, vendor/ryu/config/ota.mk)
 
+PRODUCT_COPY_FILES += \
+    vendor/ryu/config/permissions/privapp-permissions-ryu.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-ryu.xml
+
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
