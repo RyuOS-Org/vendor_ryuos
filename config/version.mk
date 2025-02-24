@@ -19,7 +19,13 @@ else
         $(warning "No maintainer name detected, building as unofficial build.")
 endif
 
-RYU_VERSION := RyuUI-$(RYU_DISPLAY_VERSION)-$(RYU_PLATFORM_VERSION)-$(RYU_BUILD)-$(RYU_BUILD_TYPE)-$(CUSTOM_BUILD_DATE)
+ifeq ($(RYU_GAPPS),true)
+RYU_BUILD_VARIANT := Gapps
+else
+RYU_BUILD_VARIANT := Vanilla
+endif
+
+RYU_VERSION := RyuUI-$(RYU_PLATFORM_VERSION)-$(RYU_DISPLAY_VERSION)-$(RYU_BUILD)-$(RYU_BUILD_TYPE)-$(RYU_BUILD_VARIANT)-$(CUSTOM_BUILD_DATE)
 
 # Ryu-UI Platform Version
 PRODUCT_SYSTEM_PROPERTIES += \
@@ -29,7 +35,8 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.ryu.version=$(RYU_DISPLAY_VERSION) \
     ro.modversion=$(RYU_VERSION) \
     ro.ryu.maintainer=$(RYU_MAINTAINER) \
-    ro.ryu.build.type=$(RYU_BUILD_TYPE)
+    ro.ryu.build.type=$(RYU_BUILD_TYPE) \
+		ro.ryu.build.variant=$(RYU_BUILD_VARIANT)
 
 # Signing
 ifneq (eng,$(TARGET_BUILD_VARIANT))

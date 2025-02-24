@@ -1,9 +1,6 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-# Google Apps
-$(call inherit-product, vendor/gms/products/gms.mk)
-
 # Pixel Framework
 $(call inherit-product-if-exists, vendor/pixel-framework/config.mk)
 
@@ -11,6 +8,11 @@ $(call inherit-product-if-exists, vendor/pixel-framework/config.mk)
 $(call inherit-product-if-exists, vendor/google/overlays/ThemeIcons/config.mk)
 
 PRODUCT_BRAND ?= RyuUI
+
+# Google Apps
+ifeq ($(RYU_GAPPS),true)
+$(call inherit-product, vendor/gms/products/gms.mk)
+endif
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
