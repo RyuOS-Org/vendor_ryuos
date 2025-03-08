@@ -36,7 +36,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.modversion=$(RYU_VERSION) \
     ro.ryu.maintainer=$(RYU_MAINTAINER) \
     ro.ryu.build.type=$(RYU_BUILD_TYPE) \
-		ro.ryu.build.variant=$(RYU_BUILD_VARIANT)
+    ro.ryu.build.variant=$(RYU_BUILD_VARIANT)
 
 # Signing
 ifneq (eng,$(TARGET_BUILD_VARIANT))
