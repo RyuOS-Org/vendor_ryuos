@@ -1,7 +1,7 @@
 CUSTOM_BUILD_DATE := $(shell date -u +%Y%m%d-%H%M)
 
 RYU_PLATFORM_VERSION := 15.0
-RYU_DISPLAY_VERSION := Ryujin
+RYU_BUILD_VERSION := 1.2
 RYU_BUILD_TYPE ?= Community
 RYU_MAINTAINER ?= Wakaranai?
 
@@ -25,15 +25,14 @@ else
 RYU_BUILD_VARIANT := Vanilla
 endif
 
-RYU_VERSION := RyuUI-$(RYU_PLATFORM_VERSION)-$(RYU_DISPLAY_VERSION)-$(RYU_BUILD)-$(RYU_BUILD_TYPE)-$(RYU_BUILD_VARIANT)-$(CUSTOM_BUILD_DATE)
+RYU_VERSION := RyuUI-$(RYU_PLATFORM_VERSION)-$(RYU_BUILD_VERSION)-$(RYU_BUILD)-$(RYU_BUILD_TYPE)-$(RYU_BUILD_VARIANT)-$(CUSTOM_BUILD_DATE)
 
 # Ryu-UI Platform Version
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.ryu.build.date=$(BUILD_DATE) \
     ro.ryu.device=$(RYU_BUILD) \
     ro.ryu.fingerprint=$(ROM_FINGERPRINT) \
-    ro.ryu.version=$(RYU_DISPLAY_VERSION) \
-    ro.modversion=$(RYU_VERSION) \
+    ro.ryu.version=$(RYU_BUILD_VERSION) \
     ro.ryu.maintainer=$(RYU_MAINTAINER) \
     ro.ryu.build.type=$(RYU_BUILD_TYPE) \
     ro.ryu.build.variant=$(RYU_BUILD_VARIANT)
