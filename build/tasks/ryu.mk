@@ -14,16 +14,17 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# Clover OTA update package
+# Ryu OTA update package
 
-CLOVER_TARGET_PACKAGE := $(PRODUCT_OUT)/$(CLOVER_VERSION).zip
+RYU_TARGET_PACKAGE := $(PRODUCT_OUT)/$(RYU_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
-$(CLOVER_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CLOVER_TARGET_PACKAGE)
-	$(hide) $(SHA256) $(CLOVER_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CLOVER_TARGET_PACKAGE).sha256sum
-	@echo "Package Complete: $(CLOVER_TARGET_PACKAGE)" >&2
+$(RYU_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(RYU_TARGET_PACKAGE)
+	$(hide) $(SHA256) $(RYU_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(RYU_TARGET_PACKAGE).sha256sum
+	$(hide) ./vendor/ryu/build/tasks/ascii_out.sh
+	@echo "Package Complete: $(RYU_TARGET_PACKAGE)" >&2
 
-.PHONY: clover
-clover: $(CLOVER_TARGET_PACKAGE) $(DEFAULT_GOAL)
+.PHONY: ryu
+ryu: $(RYU_TARGET_PACKAGE) $(DEFAULT_GOAL)

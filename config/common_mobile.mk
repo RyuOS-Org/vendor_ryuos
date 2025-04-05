@@ -1,5 +1,5 @@
-# Inherit common mobile Clover stuff
-$(call inherit-product, vendor/clover/config/common.mk)
+# Inherit common mobile Ryu stuff
+$(call inherit-product, vendor/ryu/config/common.mk)
 
 # Apps
 PRODUCT_PACKAGES += \

@@ -1,4 +1,4 @@
-# The Clover Project core functionality
+# Ryu Project core functionality
 on init
     export TERMINFO /system_ext/etc/terminfo
 

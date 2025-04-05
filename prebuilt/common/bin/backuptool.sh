@@ -48,7 +48,7 @@ if [ ! -r $S/build.prop ]; then
   echo "Backup/restore is not possible. Partition is probably empty"
   return 1
 fi
-if ! grep -q "^ro.clover.version=$V.*" $S/build.prop; then
+if ! grep -q "^ro.ryu.version=$V.*" $S/build.prop; then
   echo "Backup/restore is not possible. Incompatible ROM version: $V"
   return 2
 fi

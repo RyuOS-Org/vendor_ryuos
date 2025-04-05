@@ -1,5 +1,5 @@
-# Inherit common Clover stuff
-$(call inherit-product, vendor/clover/config/common_mobile.mk)
+# Inherit common Ryu stuff
+$(call inherit-product, vendor/ryu/config/common_mobile.mk)
 
 PRODUCT_SIZE := full
 

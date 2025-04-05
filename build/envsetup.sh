@@ -9,12 +9,12 @@ function check_product()
         echo "Couldn't locate the top of the tree. Try setting TOP." >&2
         return
     fi
-    if (echo -n $1 | grep -q -e "^clover_") ; then
-        CLOVER_BUILD=$(echo -n $1 | sed -e 's/^clover_//g')
+    if (echo -n $1 | grep -q -e "^ryu_") ; then
+        RYU_BUILD=$(echo -n $1 | sed -e 's/^ryu_//g')
     else
-        CLOVER_BUILD=
+        RYU_BUILD=
     fi
-    export CLOVER_BUILD
+    export RYU_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_RELEASE=$2 \
@@ -29,7 +29,7 @@ function brunch()
 {
     breakfast $*
     if [ $? -eq 0 ]; then
-        mka clover
+        mka ryu
     else
         echo "No such item in brunch menu. Try 'breakfast'"
         return 1
@@ -41,7 +41,7 @@ function breakfast()
 {
     target=$1
     local variant=$2
-    source ${ANDROID_BUILD_TOP}/vendor/clover/vars/aosp_target_release
+    source ${ANDROID_BUILD_TOP}/vendor/ryu/vars/aosp_target_release
 
     if [ $# -eq 0 ]; then
         # No arguments, so let's have the full menu
@@ -51,12 +51,12 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the Clover model name
+            # This is probably just the Ryu model name
             if [ -z "$variant" ]; then
                 variant="user"
             fi
 
-            lunch clover_$target-$aosp_target_release-$variant
+            lunch ryu_$target-$aosp_target_release-$variant
         fi
     fi
     return $?
@@ -67,7 +67,7 @@ alias bib=breakfast
 function eat()
 {
     if [ "$OUT" ] ; then
-        ZIPPATH=`ls -tr "$OUT"/CloverProject-*.zip | tail -1`
+        ZIPPATH=`ls -tr "$OUT"/RyuUI-*.zip | tail -1`
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
             return 1
@@ -75,13 +75,13 @@ function eat()
         echo "Waiting for device..."
         adb wait-for-device-recovery
         echo "Found device"
-        if (adb shell getprop ro.clover.device | grep -q "$CLOVER_BUILD"); then
+        if (adb shell getprop ro.ryu.device | grep -q "$RYU_BUILD"); then
             echo "Rebooting to sideload for install"
             adb reboot sideload-auto-reboot
             adb wait-for-sideload
             adb sideload $ZIPPATH
         else
-            echo "The connected device does not appear to be $CLOVER_BUILD, run away!"
+            echo "The connected device does not appear to be $RYU_BUILD, run away!"
         fi
         return $?
     else
@@ -282,7 +282,7 @@ function githubremote()
 
     local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
 
-    git remote add github https://github.com/TheCloverProject/$PROJECT
+    git remote add github https://github.com/RyuUI-Org/$PROJECT
     echo "Remote 'github' created"
 }
 
@@ -313,14 +313,14 @@ function installboot()
     adb wait-for-device-recovery
     adb root
     adb wait-for-device-recovery
-    if (adb shell getprop ro.clover.device | grep -q "$CLOVER_BUILD");
+    if (adb shell getprop ro.ryu.device | grep -q "$RYU_BUILD");
     then
         adb push $OUT/boot.img /cache/
         adb shell dd if=/cache/boot.img of=$PARTITION
         adb shell rm -rf /cache/boot.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $CLOVER_BUILD, run away!"
+        echo "The connected device does not appear to be $RYU_BUILD, run away!"
     fi
 }
 
@@ -351,14 +351,14 @@ function installrecovery()
     adb wait-for-device-recovery
     adb root
     adb wait-for-device-recovery
-    if (adb shell getprop ro.clover.device | grep -q "$CLOVER_BUILD");
+    if (adb shell getprop ro.ryu.device | grep -q "$RYU_BUILD");
     then
         adb push $OUT/recovery.img /cache/
         adb shell dd if=/cache/recovery.img of=$PARTITION
         adb shell rm -rf /cache/recovery.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $CLOVER_BUILD, run away!"
+        echo "The connected device does not appear to be $RYU_BUILD, run away!"
     fi
 }
 
@@ -370,7 +370,7 @@ function cmka() {
     if [ ! -z "$1" ]; then
         for i in "$@"; do
             case $i in
-                clover|otapackage|systemimage)
+                ryu|otapackage|systemimage)
                     mka installclean
                     mka $i
                     ;;
@@ -434,7 +434,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell getprop ro.clover.device | grep -q "$CLOVER_BUILD") || [ "$FORCE_PUSH" = "true" ];
+    if (adb shell getprop ro.ryu.device | grep -q "$RYU_BUILD") || [ "$FORCE_PUSH" = "true" ];
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices \
@@ -553,7 +553,7 @@ EOF
     rm -f $OUT/.log
     return 0
     else
-        echo "The connected device does not appear to be $CLOVER_BUILD, run away!"
+        echo "The connected device does not appear to be $RYU_BUILD, run away!"
     fi
 }
 
@@ -573,7 +573,7 @@ function fixup_common_out_dir() {
     common_out_dir=$(_get_build_var_cached OUT_DIR)/target/common
     target_device=$(_get_build_var_cached TARGET_DEVICE)
     common_target_out=common-${target_device}
-    if [ ! -z $CLOVER_FIXUP_COMMON_OUT ]; then
+    if [ ! -z $RYU_FIXUP_COMMON_OUT ]; then
         if [ -d ${common_out_dir} ] && [ ! -L ${common_out_dir} ]; then
             mv ${common_out_dir} ${common_out_dir}-${target_device}
             ln -s ${common_target_out} ${common_out_dir}

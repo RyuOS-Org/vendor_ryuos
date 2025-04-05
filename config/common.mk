@@ -2,12 +2,12 @@
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
 # Bootanimation
-$(call inherit-product, vendor/clover/config/bootanimation.mk)
+$(call inherit-product, vendor/ryu/config/bootanimation.mk)
 
 # Certification
 $(call inherit-product-if-exists, vendor/certification/config.mk)
 
-PRODUCT_BRAND ?= TheCloverProject
+PRODUCT_BRAND ?= RyuUI
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -35,14 +35,14 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/clover/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/clover/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions
+    vendor/ryu/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/ryu/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/clover/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/clover/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/clover/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/ryu/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/ryu/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/ryu/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.sh \
@@ -58,10 +58,10 @@ endif
 # BtHelper
 PRODUCT_PACKAGES += \
     BtHelper
-    
-# Clover-specific init rc file
+
+# Ryu-specific init rc file
 PRODUCT_COPY_FILES += \
-    vendor/clover/prebuilt/common/etc/init/init.clover-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.clover-system_ext.rc
+    vendor/ryu/prebuilt/common/etc/init/init.ryu-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.ryu-system_ext.rc
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -94,25 +94,26 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     product_charger_res_images \
     product_charger_res_images_vendor
-    
-ifeq ($(CLOVER_BUILDTYPE), OFFICIAL)
-# Clover packages
+
+ifeq ($(RYU_BUILDTYPE), OFFICIAL)
+# Ryu packages
 PRODUCT_PACKAGES += \
     Updater
 
 PRODUCT_COPY_FILES += \
-    vendor/clover/prebuilt/common/etc/init/init.clover-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.clover-updater.rc
-endif
+    vendor/ryu/prebuilt/common/etc/init/init.ryu-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.ryu-updater.rc
 
-# Clover Wallpapers
-PRODUCT_PACKAGES += \
-    CloverWalls
+# Sign build
+include vendor/ryu-priv/keys/keys.mk
+else
+-include vendor/ryu-priv/keys/keys.mk
+endif
 
 # Disable RescueParty due to high risk of data loss
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.disable_rescue=true
-    
-# Extra tools in Clover
+
+# Extra tools in Ryu-UI
 PRODUCT_PACKAGES += \
     bash \
     curl \
@@ -157,7 +158,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 
 # FRP
 PRODUCT_COPY_FILES += \
-    vendor/clover/prebuilt/common/bin/wipe-frp.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/wipe-frp
+    vendor/ryu/prebuilt/common/bin/wipe-frp.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/wipe-frp
 
 # Gboard side padding
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -177,7 +178,7 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 PRODUCT_COPY_FILES += \
-    vendor/clover/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/ryu/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # Overlay
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -190,16 +191,16 @@ PRODUCT_PACKAGES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    vendor/clover/config/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml \
-    vendor/clover/config/permissions/privapp-permissions-settings.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-settings.xml
+    vendor/ryu/config/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml \
+    vendor/ryu/config/permissions/privapp-permissions-settings.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-settings.xml
 
 # Lineage Health
 PRODUCT_COPY_FILES += \
-    vendor/clover/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
+    vendor/ryu/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
 
 # Lineage-specific file
 PRODUCT_COPY_FILES += \
-    vendor/clover/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
+    vendor/ryu/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
 
 # rsync
 PRODUCT_PACKAGES += \
@@ -251,7 +252,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 endif
 
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/clover/overlay/common
+    vendor/ryu/overlay/common
 
 PRODUCT_PACKAGES += \
     AndroidBlackThemeOverlay \
@@ -270,9 +271,9 @@ CUSTOM_LOCALES += \
 # Google apps and services
 $(call inherit-product, vendor/gms/products/gms.mk)
 
-include vendor/clover/config/version.mk
+include vendor/ryu/config/version.mk
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
 # Fonts
-include vendor/clover/config/fonts.mk
+include vendor/ryu/config/fonts.mk

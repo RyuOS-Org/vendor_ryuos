@@ -2,8 +2,8 @@
 #
 # ADDOND_VERSION=2
 #
-# /system/addon.d/50-clover.sh
-# During a The Clover Project upgrade, this script backs up /system/etc/hosts,
+# /system/addon.d/50-ryu.sh
+# During a Ryu Project upgrade, this script backs up /system/etc/hosts,
 # /system is formatted and reinstalled, then the file is restored.
 #
 

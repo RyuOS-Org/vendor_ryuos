@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2024-2025 The Clover Project
+// Copyright (C) 2025 Ryu-UI Org
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@
 // limitations under the License.
 
 aconfig_value_set {
-    name: "aconfig_value_set-clover-bp1a",
+    name: "aconfig_value_set-ryu-bp1a",
     values: [
         "aconfig-values-bp1a-android.hardware.biometrics-all",
         "aconfig-values-bp1a-com.android.settings.flags-all",

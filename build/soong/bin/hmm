@@ -1,6 +1,6 @@
-function __print_clover_functions_help() {
+function __print_ryu_functions_help() {
 cat <<EOF
-Additional Clover functions:
+Additional Ryu functions:
 - brunch:          Runs "breakfast" and "mka bacon" for the provided device target.
 - breakfast:       Wrapper for "lunch".
 - eat:             Reboots to recovery and installs the compiled OTA package.
@@ -11,7 +11,7 @@ Additional Clover functions:
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
 - aospremote:      Add git remote for matching AOSP repository.
 - cloremote:       Add git remote for matching CodeLinaro repository.
-- githubremote:    Add git remote for The Clover Project Github.
+- githubremote:    Add git remote for The Ryu Project Github.
 - mka:             Alias to "m".
 - mkap:            Builds the module(s) using mka and pushes them to the device.
 - cmka:            Cleans and builds using mka.

@@ -1,7 +1,7 @@
-# Inherit mobile full common Clover stuff
-$(call inherit-product, vendor/clover/config/common_mobile_full.mk)
+# Inherit mobile full common Ryu stuff
+$(call inherit-product, vendor/ryu/config/common_mobile_full.mk)
 
-# Inherit tablet common Clover stuff
-$(call inherit-product, vendor/clover/config/tablet.mk)
+# Inherit tablet common Ryu stuff
+$(call inherit-product, vendor/ryu/config/tablet.mk)
 
-$(call inherit-product, vendor/clover/config/wifionly.mk)
+$(call inherit-product, vendor/ryu/config/wifionly.mk)

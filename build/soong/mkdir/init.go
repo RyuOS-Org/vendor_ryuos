@@ -18,7 +18,7 @@ import (
 	"android/soong/android"
 )
 
-var pctx = android.NewPackageContext("clover/soong/mkdir")
+var pctx = android.NewPackageContext("ryu/soong/mkdir")
 
 func init() {
 	RegisterBuildComponents(android.InitRegistrationContext)

@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #
-# The Clover Project A/B OTA Postinstall Script
+# The Ryu-UI Project A/B OTA Postinstall Script
 #
 
 /postinstall/system/bin/backuptool_ab.sh backup
