@@ -12,7 +12,7 @@ OFFICIAL_MAINTAINER = $(shell cat vendor/ryu/maintainer/official_maintainer.mk |
 ifdef RYU_MAINTAINER
         ifeq ($(filter $(RYU_MAINTAINER), $(OFFICIAL_MAINTAINER)), $(RYU_MAINTAINER))
                 $(warning "$(RYU_MAINTAINER) is verified as official maintainer, build as official build.")
-                RYU_BUILD_TYPE := OFFICIAL
+                RYU_BUILDTYPE := OFFICIAL
         else
                 $(warning "Unofficial maintainer detected, building as COMMUNITY build.")
         endif
