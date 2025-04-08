@@ -5,6 +5,7 @@ CURRENT_DEVICE=$(shell echo "$(TARGET_PRODUCT)" | cut -d'_' -f 2,3)
 
 RYU_BUILDTYPE ?= COMMUNITY
 RYU_MAINTAINER ?= Wakaranai?
+BYPASS_CHARGE_SUPPORTED ?= false
 
 OFFICIAL_MAINTAINER = $(shell cat vendor/ryu/maintainer/official_maintainer.mk | awk '{ print $$1 }')
 
@@ -32,4 +33,5 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.ryu.display.version=$(RYU_DISPLAY_VERSION) \
     ro.ryu.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.ryu.releasetype=$(RYU_BUILDTYPE) \
-    ro.ryu.maintainer=$(RYU_MAINTAINER)
+    ro.ryu.maintainer=$(RYU_MAINTAINER) \
+    persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED)
