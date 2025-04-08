@@ -95,7 +95,6 @@ PRODUCT_PACKAGES += \
     product_charger_res_images \
     product_charger_res_images_vendor
 
-ifeq ($(RYU_BUILDTYPE), OFFICIAL)
 # Ryu packages
 PRODUCT_PACKAGES += \
     Updater
@@ -104,10 +103,7 @@ PRODUCT_COPY_FILES += \
     vendor/ryu/prebuilt/common/etc/init/init.ryu-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.ryu-updater.rc
 
 # Sign build
-include vendor/ryu-priv/keys/keys.mk
-else
 -include vendor/ryu-priv/keys/keys.mk
-endif
 
 # Disable RescueParty due to high risk of data loss
 PRODUCT_PRODUCT_PROPERTIES += \
