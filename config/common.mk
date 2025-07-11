@@ -1,7 +1,7 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-PRODUCT_BRAND ?= LessAOSP
+PRODUCT_BRAND ?= RyuOS
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.debug.alloc=0 \
@@ -55,14 +55,14 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/lessaosp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/ryuos/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/ryuos/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/lessaosp/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/lessaosp/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/ryuos/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/ryuos/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/ryuos/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -70,7 +70,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
+    vendor/ryuos/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
 
 # Enable blur
 TARGET_ENABLE_BLUR ?= true
@@ -86,15 +86,15 @@ PRODUCT_SYSTEM_PROPERTIES += ro.surface_flinger.supports_background_blur=1
 
 # Pixel sysconfig from Pixel XL (Photos)
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml \
+    vendor/ryuos/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml \
 
-# Copy all LESSAOSP-specific init rc files
-$(foreach f,$(wildcard vendor/lessaosp/prebuilt/common/etc/init/*.rc),\
+# Copy all ryuos-specific init rc files
+$(foreach f,$(wildcard vendor/ryuos/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # Privapp permissions
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/config/permissions/privapp-permissions-custom.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-custom.xml
+    vendor/ryuos/config/permissions/privapp-permissions-custom.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-custom.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -102,7 +102,7 @@ PRODUCT_COPY_FILES += \
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/prebuilt/google/etc/permissions/privapp-permissions-googleapps-turbo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googleapps-turbo.xml
+    vendor/ryuos/prebuilt/google/etc/permissions/privapp-permissions-googleapps-turbo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googleapps-turbo.xml
 
 # Credential storage
 PRODUCT_PACKAGES += \
@@ -114,7 +114,7 @@ PRODUCT_COPY_FILES += \
 
 # Component overrides
 PRODUCT_PACKAGES += \
-    lessaosp-component-overrides.xml
+    ryuos-component-overrides.xml
 
 # DesktopMode
 PRODUCT_PACKAGES += \
@@ -156,7 +156,7 @@ WITH_DEXPREOPT_DEBUG_INFO := false
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Require all requested packages to exist
-$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(LESSAOSP_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml)
+$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(RYUOS_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml)
 
 # Enable whole-program R8 Java optimizations for SystemUI and system_server,
 # but also allow explicit overriding for testing and development.
@@ -206,10 +206,10 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lessaosp/overlay/no-rro
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/ryuos/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/lessaosp/overlay/common \
-    vendor/lessaosp/overlay/no-rro
+    vendor/ryuos/overlay/common \
+    vendor/ryuos/overlay/no-rro
 
 PRODUCT_PACKAGES += \
     NetworkStackOverlay \
@@ -231,7 +231,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 
 # FRP
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/prebuilt/common/bin/wipe-frp.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/wipe-frp
+    vendor/ryuos/prebuilt/common/bin/wipe-frp.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/wipe-frp
 
 # Themes
 PRODUCT_PACKAGES += \
@@ -241,7 +241,7 @@ PRODUCT_PACKAGES += \
     AndroidEspressoTheme
 
 # RRO
-include vendor/lessaosp/config/rro_overlays.mk
+include vendor/ryuos/config/rro_overlays.mk
 
 ifeq ($(TARGET_BUILD_VARIANT),userdebug)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -255,31 +255,31 @@ endif
 
 # Cloned app exemption
 PRODUCT_COPY_FILES += \
-    vendor/lessaosp/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-lessaosp-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-lessaosp-product.xml
+    vendor/ryuos/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-ryuos-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-ryuos-product.xml
 
 # Versioning
-include vendor/lessaosp/config/version.mk
+include vendor/ryuos/config/version.mk
 
 # BootAnimation
-include vendor/lessaosp/config/bootanimation.mk
+include vendor/ryuos/config/bootanimation.mk
 
 # Fonts
-$(call inherit-product, vendor/lessaosp/fonts/fonts.mk)
+$(call inherit-product, vendor/ryuos/fonts/fonts.mk)
 
 # Inherit SystemUI Clocks if they exist
 $(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
 
 # Audio
-$(call inherit-product, vendor/lessaosp/audio/audio.mk)
+$(call inherit-product, vendor/ryuos/audio/audio.mk)
 
 # Icon packs
-$(call inherit-product, vendor/lessaosp/themes/icon_packs/icon_packs.mk)
+$(call inherit-product, vendor/ryuos/themes/icon_packs/icon_packs.mk)
 
 # Game Props
-TARGET_PRODUCT_PROP += vendor/lessaosp/config//gameprops/product.prop
+TARGET_PRODUCT_PROP += vendor/ryuos/config//gameprops/product.prop
 
 # Include extra packages
-include vendor/lessaosp/config/packages.mk
+include vendor/ryuos/config/packages.mk
 
 # Include Device Framework Compatibility
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/lessaosp/config/device_framework_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/ryuos/config/device_framework_matrix.xml

@@ -1,10 +1,10 @@
-# LessAOSP packages
+# RyuOS packages
 PRODUCT_PACKAGES += \
     ThemePicker \
     AvatarPicker \
     ThemesStub \
 
-# Extra tools in LESSAOSP
+# Extra tools in RyuOS
 PRODUCT_PACKAGES += \
     awk \
     bzip2 \
@@ -19,7 +19,7 @@ PRODUCT_PACKAGES += \
     mke2fs \
     mkfs.exfat
 
-# LessAOSP UDFPS animations
+# RyuOS UDFPS animations
 ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
 PRODUCT_PACKAGES += \
     UdfpsIcons \

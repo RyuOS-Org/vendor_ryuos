@@ -13,9 +13,9 @@ prebuilt_etc_xml {
 }
 
 prebuilt_etc_xml {
-    name: "lessaosp-component-overrides.xml",
+    name: "ryuos-component-overrides.xml",
     product_specific: true,
-    src: "etc/lessaosp-component-overrides.xml",
+    src: "etc/ryuos-component-overrides.xml",
     sub_dir: "sysconfig",
 }
 

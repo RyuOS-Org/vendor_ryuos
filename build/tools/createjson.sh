@@ -1,7 +1,7 @@
 #
 # Copyright (C) 2019 crDroid Android Project
 #
-# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the 
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the
 # License at
 #
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -25,7 +25,7 @@ if [ -f $existingOTAjson ]; then
 	device=`grep -n "\"device\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	filename=$3
 	version=`echo "$3" | cut -d'-' -f2`
-	download="https://sourceforge.net/projects/lessaosp/files/$1/$filename/download"
+	download="https://sourceforge.net/projects/ryuos/files/$1/$filename/download"
 	buildprop=$2/system/build.prop
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
 	timestamp=`sed -n $linenr'p' < $buildprop | cut -d'=' -f2`

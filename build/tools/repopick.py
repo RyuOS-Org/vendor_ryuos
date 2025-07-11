@@ -153,12 +153,12 @@ def fetch_query(remote_url, query):
 
 
 if __name__ == '__main__':
-    # Default to LessAOSP Gerrit
-    default_gerrit = 'https://review.lessaosp.org'
+    # Default to RyuOS Gerrit
+    default_gerrit = 'https://review.ryuos.org'
 
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=textwrap.dedent('''\
         repopick.py is a utility to simplify the process of cherry picking
-        patches from LessAOSP's Gerrit instance (or any gerrit instance of your choosing)
+        patches from RyuOS's Gerrit instance (or any gerrit instance of your choosing)
 
         Given a list of change numbers, repopick will cd into the project path
         and cherry pick the latest patch available.

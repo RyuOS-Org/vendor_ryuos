@@ -4,10 +4,10 @@
 # Recovery
 BOARD_USES_FULL_RECOVERY_IMAGE ?= true
 
-include vendor/lessaosp/config/BoardConfigKernel.mk
+include vendor/ryuos/config/BoardConfigKernel.mk
 
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     include hardware/qcom-caf/common/BoardConfigQcom.mk
 endif
 
-include vendor/lessaosp/config/BoardConfigSoong.mk
+include vendor/ryuos/config/BoardConfigSoong.mk

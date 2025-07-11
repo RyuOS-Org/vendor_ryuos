@@ -1,8 +1,8 @@
-// LessAOSP soong configs
+// RyuOS soong configs
 
 bootstrap_go_package {
-    name: "soong-lessaosp-generator",
-    pkgPath: "lessaosp/soong/generator",
+    name: "soong-ryuos-generator",
+    pkgPath: "ryuos/soong/generator",
     deps: [
         "blueprint",
         "blueprint-pathtools",
@@ -17,11 +17,11 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-lessaosp_generator {
+ryuos_generator {
     name: "generated_kernel_includes",
 
     // The headers make command
-    cmd: "$(PATH_OVERRIDE_SOONG) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_SOURCE) O=$(KERNEL_BUILD_OUT_PREFIX)$(genDir) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) headers_install && vendor/lessaosp/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
+    cmd: "$(PATH_OVERRIDE_SOONG) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_SOURCE) O=$(KERNEL_BUILD_OUT_PREFIX)$(genDir) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) headers_install && vendor/ryuos/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
 
     // Directories that can be imported by a cc_* module generated_headers property
     export_include_dirs: [
@@ -43,8 +43,8 @@ lessaosp_generator {
 }
 
 bootstrap_go_package {
-    name: "soong-lessaosp-mkdir",
-    pkgPath: "lessaosp/soong/mkdir",
+    name: "soong-ryuos-mkdir",
+    pkgPath: "ryuos/soong/mkdir",
     deps: [
         "blueprint",
         "blueprint-pathtools",
@@ -80,7 +80,7 @@ cc_library_headers {
 soong_config_module_type {
     name: "camera_needs_client_info_lib",
     module_type: "cc_defaults",
-    config_namespace: "lessaospGlobalVars",
+    config_namespace: "ryuosGlobalVars",
     bool_variables: ["camera_needs_client_info_lib"],
     properties: [
         "cppflags",
@@ -101,7 +101,7 @@ camera_needs_client_info_lib {
 soong_config_module_type {
     name: "camera_needs_client_info_lib_oplus",
     module_type: "cc_defaults",
-    config_namespace: "lessaospGlobalVars",
+    config_namespace: "ryuosGlobalVars",
     bool_variables: ["camera_needs_client_info_lib_oplus"],
     properties: [
         "cppflags",
@@ -122,7 +122,7 @@ camera_needs_client_info_lib_oplus {
 soong_config_module_type {
     name: "target_alternative_futex_waiters",
     module_type: "cc_defaults",
-    config_namespace: "lessaospGlobalVars",
+    config_namespace: "ryuosGlobalVars",
     bool_variables: ["target_alternative_futex_waiters"],
     properties: [
         "cflags",
@@ -143,7 +143,7 @@ target_alternative_futex_waiters {
 soong_config_module_type {
     name: "target_shim_libs",
     module_type: "cc_defaults",
-    config_namespace: "lessaospGlobalVars",
+    config_namespace: "ryuosGlobalVars",
     value_variables: ["target_ld_shim_libs"],
     properties: ["cppflags"],
 }
@@ -160,7 +160,7 @@ target_shim_libs {
 soong_config_module_type {
     name: "needs_netd_direct_connect_rule",
     module_type: "cc_defaults",
-    config_namespace: "lessaospGlobalVars",
+    config_namespace: "ryuosGlobalVars",
     bool_variables: ["needs_netd_direct_connect_rule"],
     properties: ["cppflags"],
 }
@@ -194,7 +194,7 @@ uses_legacy_fd_fbdev {
 soong_config_module_type {
     name: "target_camera_package_name",
     module_type: "cc_defaults",
-    config_namespace: "lessaospGlobalVars",
+    config_namespace: "ryuosGlobalVars",
     value_variables: ["target_camera_package_name"],
     properties: ["cppflags"],
 }
@@ -212,7 +212,7 @@ target_camera_package_name {
 soong_config_module_type {
     name: "nvidia_enhancements",
     module_type: "cc_defaults",
-    config_namespace: "lessaospNvidiaVars",
+    config_namespace: "ryuosNvidiaVars",
     bool_variables: ["uses_nvidia_enhancements"],
     properties: ["cppflags"],
 }
@@ -263,7 +263,7 @@ disable_bluetooth_le_set_host_feature {
 soong_config_module_type {
     name: "uses_oplus_touch",
     module_type: "cc_defaults",
-    config_namespace: "lessaospGlobalVars",
+    config_namespace: "ryuosGlobalVars",
     bool_variables: ["uses_oplus_touch"],
     properties: ["cppflags"],
 }

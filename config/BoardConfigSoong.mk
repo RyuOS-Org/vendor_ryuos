@@ -12,14 +12,12 @@ EXPORT_TO_SOONG := \
     TARGET_KERNEL_SOURCE
 
 # Setup SOONG_CONFIG_* vars to export the vars listed above.
-# Documentation here:
-# https://github.com/LessAOSP/android_build_soong/commit/8328367c44085b948c003116c0ed74a047237a69
 
-$(call add_soong_config_namespace,lessaospVarsPlugin)
-$(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,lessaospVarsPlugin,$(v))))
+$(call add_soong_config_namespace,ryuosVarsPlugin)
+$(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,ryuosVarsPlugin,$(v))))
 
-SOONG_CONFIG_NAMESPACES += lessaospGlobalVars
-SOONG_CONFIG_lessaospGlobalVars += \
+SOONG_CONFIG_NAMESPACES += ryuosGlobalVars
+SOONG_CONFIG_ryuosGlobalVars += \
     camera_needs_client_info_lib \
     camera_needs_client_info_lib_oplus \
     disable_bluetooth_le_read_buffer_size_v2 \
@@ -31,24 +29,24 @@ SOONG_CONFIG_lessaospGlobalVars += \
     uses_legacy_fd_fbdev \
     uses_oplus_touch
 
-SOONG_CONFIG_NAMESPACES += lessaospNvidiaVars
-SOONG_CONFIG_lessaospNvidiaVars += \
+SOONG_CONFIG_NAMESPACES += ryuosNvidiaVars
+SOONG_CONFIG_ryuosNvidiaVars += \
     uses_nv_enhancements
 
 # Soong bool variables
-SOONG_CONFIG_lessaospGlobalVars_needs_netd_direct_connect_rule := $(TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE)
-SOONG_CONFIG_lessaospGlobalVars_target_alternative_futex_waiters := $(TARGET_ALTERNATIVE_FUTEX_WAITERS)
-SOONG_CONFIG_lessaospNvidiaVars_uses_nv_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
-SOONG_CONFIG_lessaospGlobalVars_uses_legacy_fd_fbdev := $(TARGET_USES_LEGACY_FD_FBDEV)
-SOONG_CONFIG_lessaospGlobalVars_uses_oplus_touch := $(TARGET_USES_OPLUS_TOUCH)
-SOONG_CONFIG_lessaospGlobalVars_camera_needs_client_info_lib := $(TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB)
-SOONG_CONFIG_lessaospGlobalVars_camera_needs_client_info_lib_oplus := $(TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB_OPLUS)
+SOONG_CONFIG_ryuosGlobalVars_needs_netd_direct_connect_rule := $(TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE)
+SOONG_CONFIG_ryuosGlobalVars_target_alternative_futex_waiters := $(TARGET_ALTERNATIVE_FUTEX_WAITERS)
+SOONG_CONFIG_ryuosNvidiaVars_uses_nv_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
+SOONG_CONFIG_ryuosGlobalVars_uses_legacy_fd_fbdev := $(TARGET_USES_LEGACY_FD_FBDEV)
+SOONG_CONFIG_ryuosGlobalVars_uses_oplus_touch := $(TARGET_USES_OPLUS_TOUCH)
+SOONG_CONFIG_ryuosGlobalVars_camera_needs_client_info_lib := $(TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB)
+SOONG_CONFIG_ryuosGlobalVars_camera_needs_client_info_lib_oplus := $(TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB_OPLUS)
 
 # Soong value variables
-SOONG_CONFIG_lessaospGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARGET_LD_SHIM_LIBS))
-SOONG_CONFIG_lessaospGlobalVars_disable_bluetooth_le_read_buffer_size_v2 := $(TARGET_DISABLE_BLUETOOTH_LE_READ_BUFFER_SIZE_V2)
-SOONG_CONFIG_lessaospGlobalVars_disable_bluetooth_le_set_host_feature := $(TARGET_DISABLE_BLUETOOTH_LE_SET_HOST_FEATURE)
-SOONG_CONFIG_lessaospGlobalVars_target_camera_package_name := $(TARGET_CAMERA_PACKAGE_NAME)
+SOONG_CONFIG_ryuosGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARGET_LD_SHIM_LIBS))
+SOONG_CONFIG_ryuosGlobalVars_disable_bluetooth_le_read_buffer_size_v2 := $(TARGET_DISABLE_BLUETOOTH_LE_READ_BUFFER_SIZE_V2)
+SOONG_CONFIG_ryuosGlobalVars_disable_bluetooth_le_set_host_feature := $(TARGET_DISABLE_BLUETOOTH_LE_SET_HOST_FEATURE)
+SOONG_CONFIG_ryuosGlobalVars_target_camera_package_name := $(TARGET_CAMERA_PACKAGE_NAME)
 
 # Camera
 ifneq ($(TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED),)

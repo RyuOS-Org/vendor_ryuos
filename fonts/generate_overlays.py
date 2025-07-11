@@ -65,7 +65,7 @@ ANDROID_MANIFEST_TEMPLATE = """<!--
     limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.lessaosp.theme.font.{pkg_name}">
+    package="org.ryuos.theme.font.{pkg_name}">
 
     <overlay android:targetPackage="android"
         android:category="android.theme.customization.font"

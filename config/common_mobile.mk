@@ -1,5 +1,5 @@
-# Inherit common mobile LESSAOSP stuff
-$(call inherit-product, vendor/lessaosp/config/common.mk)
+# Inherit common mobile RYUOS stuff
+$(call inherit-product, vendor/ryuos/config/common.mk)
 
 # Charger
 PRODUCT_PACKAGES += \

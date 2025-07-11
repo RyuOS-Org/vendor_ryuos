@@ -14,6 +14,6 @@
 # limitations under the License.
 #
 
-# LessAOSP
+# RyuOS
 PRODUCT_PACKAGES += \
     ImmersiveNavigationOverlay \

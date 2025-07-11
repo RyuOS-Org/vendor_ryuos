@@ -29,14 +29,14 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-custom_local_manifest = ".repo/local_manifests/lessaosp.xml"
+custom_local_manifest = ".repo/local_manifests/ryuos.xml"
 custom_default_revision = "14"
-custom_dependencies = "lessaosp.dependencies"
-org_manifest = "LessAOSP-Devices"  # leave empty if org is provided in manifest
-org_display = "LessAOSP-Devices"  # needed for displaying
+custom_dependencies = "ryuos.dependencies"
+org_manifest = "RyuOS-Devices"  # leave empty if org is provided in manifest
+org_display = "RyuOS-Devices"  # needed for displaying
 
 default_manifest = ".repo/manifests/default.xml"
-lessaosp_manifest = ".repo/manifests/snippets/lessaosp.xml"
+ryuos_manifest = ".repo/manifests/snippets/ryuos.xml"
 lineage_manifest = ".repo/manifests/snippets/external.xml"
 
 github_token = None
@@ -138,7 +138,7 @@ def is_in_manifest(project_path):
 def add_to_manifest(repos, fallback_branch=None):
     lm = load_manifest(custom_local_manifest)
     mlm = load_manifest(default_manifest)
-    lessaospm = load_manifest(lessaosp_manifest)
+    ryuosm = load_manifest(ryuos_manifest)
     lineagem = load_manifest(lineage_manifest)
 
     for repo in repos:
@@ -170,8 +170,8 @@ def add_to_manifest(repos, fallback_branch=None):
             continue
 
         existing_m_project = None
-        if exists_in_tree(lessaospm, repo_path) != None:
-            existing_m_project = exists_in_tree(lessaospm, repo_path)
+        if exists_in_tree(ryuosm, repo_path) != None:
+            existing_m_project = exists_in_tree(ryuosm, repo_path)
         elif exists_in_tree(lineagem, repo_path) != None:
             existing_m_project = exists_in_tree(lineagem, repo_path)
         elif exists_in_tree(mlm, repo_path) != None:

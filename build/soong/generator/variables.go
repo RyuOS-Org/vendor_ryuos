@@ -6,12 +6,12 @@ import (
 	"android/soong/android"
 )
 
-func lessaospExpandVariables(ctx android.ModuleContext, in string) string {
-	lessaospVars := ctx.Config().VendorConfig("lessaospVarsPlugin")
+func ryuosExpandVariables(ctx android.ModuleContext, in string) string {
+	ryuosVars := ctx.Config().VendorConfig("ryuosVarsPlugin")
 
 	out, err := android.Expand(in, func(name string) (string, error) {
-		if lessaospVars.IsSet(name) {
-			return lessaospVars.String(name), nil
+		if ryuosVars.IsSet(name) {
+			return ryuosVars.String(name), nil
 		}
 		// This variable is not for us, restore what the original
 		// variable string will have looked like for an Expand

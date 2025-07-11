@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := vendor/lessaosp/fonts
+LOCAL_PATH := vendor/ryuos/fonts
 
 # We have to use PRODUCT_PACKAGES (together with BUILD_PREBUILT) instead of
 # PRODUCT_COPY_FILES to install the font files, so that the NOTICE file can
@@ -57,4 +57,4 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
 
 # Include extra addon fonts
--include vendor/lessaosp/fonts/extra/extra.mk
+-include vendor/ryuos/fonts/extra/extra.mk

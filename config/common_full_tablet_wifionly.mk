@@ -1,7 +1,7 @@
-# Inherit mobile full common LESSAOSP stuff
-$(call inherit-product, vendor/lessaosp/config/common_mobile_full.mk)
+# Inherit mobile full common RYUOS stuff
+$(call inherit-product, vendor/ryuos/config/common_mobile_full.mk)
 
-# Inherit tablet common LESSAOSP stuff
-$(call inherit-product, vendor/lessaosp/config/tablet.mk)
+# Inherit tablet common RYUOS stuff
+$(call inherit-product, vendor/ryuos/config/tablet.mk)
 
-$(call inherit-product, vendor/lessaosp/config/wifionly.mk)
+$(call inherit-product, vendor/ryuos/config/wifionly.mk)

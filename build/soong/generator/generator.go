@@ -27,7 +27,7 @@ import (
 )
 
 func init() {
-	android.RegisterModuleType("lessaosp_generator", GeneratorFactory)
+	android.RegisterModuleType("ryuos_generator", GeneratorFactory)
 
 	pctx.HostBinToolVariable("sboxCmd", "sbox")
 }
@@ -203,12 +203,12 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	if depRoot == "" {
 		depRoot = ctx.ModuleDir()
 	} else {
-		depRoot = lessaospExpandVariables(ctx, depRoot)
+		depRoot = ryuosExpandVariables(ctx, depRoot)
 	}
 
 	// Glob dep_files property
 	for _, dep_file := range g.properties.Dep_files {
-		dep_file = lessaospExpandVariables(ctx, dep_file)
+		dep_file = ryuosExpandVariables(ctx, dep_file)
 		globPath := filepath.Join(depRoot, dep_file)
 		paths, err := ctx.GlobWithDeps(globPath, nil)
 		if err != nil {
@@ -220,7 +220,7 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 		}
 	}
 
-	exCmd := lessaospExpandVariables(ctx, String(g.properties.Cmd))
+	exCmd := ryuosExpandVariables(ctx, String(g.properties.Cmd))
 
 	// Dummy output dep
 	dummyDep := android.PathForModuleGen(ctx, ".dummy_dep")

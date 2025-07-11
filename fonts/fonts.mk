@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := vendor/lessaosp/fonts
+LOCAL_PATH := vendor/ryuos/fonts
 
 # Copy font files
-include vendor/lessaosp/fonts/font_files.mk
--include vendor/lessaosp/fonts/extra/extra.mk
+include vendor/ryuos/fonts/font_files.mk
+-include vendor/ryuos/fonts/extra/extra.mk
 
 # Register custom fonts
 PRODUCT_COPY_FILES += \

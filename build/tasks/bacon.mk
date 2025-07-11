@@ -14,9 +14,9 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# LESSAOSP OTA update package
+# RYUOS OTA update package
 
-LESSAOSP_TARGET_PACKAGE := $(PRODUCT_OUT)/lessaosp-$(LESSAOSP_VERSION).zip
+RYUOS_TARGET_PACKAGE := $(PRODUCT_OUT)/ryuos-$(RYUOS_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
@@ -26,18 +26,18 @@ CL_GRN="\033[32m"
 
 .PHONY: bacon
 bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LESSAOSP_TARGET_PACKAGE)
-	$(hide) $(SHA256) $(LESSAOSP_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LESSAOSP_TARGET_PACKAGE).sha256sum
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(RYUOS_TARGET_PACKAGE)
+	$(hide) $(SHA256) $(RYUOS_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(RYUOS_TARGET_PACKAGE).sha256sum
 	echo -e ${CL_BLD}${CL_RED}"===============================-Package complete-==============================="${CL_RED}
-	echo -e ${CL_BLD}${CL_GRN}"Zip: "${CL_RED} $(LESSAOSP_TARGET_PACKAGE)${CL_RST}
-	echo -e ${CL_BLD}${CL_GRN}"SHA256: "${CL_RED}" `cat $(LESSAOSP_TARGET_PACKAGE).sha256sum | awk '{print $$1}' `"${CL_RST}
-	echo -e ${CL_BLD}${CL_GRN}"Size:"${CL_RED}" `du -sh $(LESSAOSP_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
-	echo -e ${CL_BLD}${CL_GRN}"TimeStamp:"${CL_RED}" `cat $(PRODUCT_OUT)/system/build.prop | grep ro.lessaosp.build.date | cut -d'=' -f2 | awk '{print $$1}' `"${CL_RST}
-	echo -e ${CL_BLD}${CL_GRN}"Integer Value:"${CL_RED}" `wc -c $(LESSAOSP_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"Zip: "${CL_RED} $(RYUOS_TARGET_PACKAGE)${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"SHA256: "${CL_RED}" `cat $(RYUOS_TARGET_PACKAGE).sha256sum | awk '{print $$1}' `"${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"Size:"${CL_RED}" `du -sh $(RYUOS_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"TimeStamp:"${CL_RED}" `cat $(PRODUCT_OUT)/system/build.prop | grep ro.ryuos.build.date | cut -d'=' -f2 | awk '{print $$1}' `"${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"Integer Value:"${CL_RED}" `wc -c $(RYUOS_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
 	echo -e ${CL_BLD}${CL_RED}"================================================================================"${CL_RED}
-	$(hide) if [ "$(LESSAOSP_BUILD_TYPE)" = "OFFICIAL" ]; then \
+	$(hide) if [ "$(RYUOS_BUILD_TYPE)" = "OFFICIAL" ]; then \
             echo "creating json OTA..." >&2; \
-	    ./vendor/lessaosp/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) LessAOSP-$(LESSAOSP_VERSION).zip; \
+	    ./vendor/ryuos/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) RyuOS-$(RYUOS_VERSION).zip; \
 	else \
 	    echo "Skipping json OTA creation..." >&2; \
 	fi

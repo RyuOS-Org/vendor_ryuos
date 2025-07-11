@@ -1,5 +1,5 @@
 #!/bin/bash
-# AOSP tag merge script for LessAOSP
+# AOSP tag merge script for RyuOS
 # Author: Adithya R (ghostrider_reborn)
 
 # Colors
@@ -8,7 +8,7 @@ grn=$'\e[1;32m'
 blu=$'\e[1;34m'
 end=$'\e[0m'
 
-REMOTE="lessaosp"
+REMOTE="ryuos"
 BRANCH="12"
 
 BLACKLIST="manifest \

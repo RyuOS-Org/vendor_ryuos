@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LESSAOSP Themes</string>
+    <string name="app_name">RYUOS Themes</string>
 
     <!-- Side A colors -->
     <string name="default_color_name">@*android:string/system_locale_title</string>
