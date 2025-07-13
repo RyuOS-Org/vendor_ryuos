@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------
 # RYUOS OTA update package
 
-RYUOS_TARGET_PACKAGE := $(PRODUCT_OUT)/ryuos-$(RYUOS_VERSION).zip
+RYUOS_TARGET_PACKAGE := $(PRODUCT_OUT)/RyuOS-$(RYUOS_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
@@ -24,10 +24,11 @@ CL_PRP="\033[35m"
 CL_RED="\033[31m"
 CL_GRN="\033[32m"
 
-.PHONY: bacon
-bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
+.PHONY: ryuos
+ryuos: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(RYUOS_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(RYUOS_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(RYUOS_TARGET_PACKAGE).sha256sum
+	$(hide) ./vendor/ryuos/build/tasks/ascii_out.sh
 	echo -e ${CL_BLD}${CL_RED}"===============================-Package complete-==============================="${CL_RED}
 	echo -e ${CL_BLD}${CL_GRN}"Zip: "${CL_RED} $(RYUOS_TARGET_PACKAGE)${CL_RST}
 	echo -e ${CL_BLD}${CL_GRN}"SHA256: "${CL_RED}" `cat $(RYUOS_TARGET_PACKAGE).sha256sum | awk '{print $$1}' `"${CL_RST}
